@@ -1,30 +1,37 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme-overrides="themeOverrides">
+
+    
+    <n-message-provider>
+        
+        <router-view/>
+</n-message-provider>
+</n-config-provider>
+
+
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script setup lang="ts">
+import {NMessageProvider, NConfigProvider,NDialogProvider} from "naive-ui";
+import type { GlobalThemeOverrides } from 'naive-ui'
+import { zhCN, dateZhCN } from 'naive-ui'
+import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+const store = useStore()
+const route = useRouter()
+route.beforeEach((to,from,next)=>{
+  store.commit('resetState');
+  next();
+})
+const themeOverrides: GlobalThemeOverrides = {
+  common: {
+    primaryColor: '#10A2FC',
+    primaryColorHover: '#12A2FB',
+    primaryColorPressed: '#FFC0CB'
+    // primaryColorSuppl: '#4098FC'
   }
+  // Button: {
+  //     textColor: '#FF0000'
+  // }
 }
-</style>
+
+</script>
