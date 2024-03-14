@@ -10,12 +10,8 @@
             <div style="display:flex;margin-bottom: 10px;">
                 <div>
                     <n-space :size="[Number(20), Number(1)]">
-                        <n-upload action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f" :headers="{
-                            'naive-info': 'hello!'
-                        }" :data="{
-    'naive-data': 'cool! naive!'
-}">
-                            <n-button round size="tiny" @click="router.push({ name: 'kkk', query: { cc: '123', } });">
+                        <n-upload action="http://127.0.0.1:3001/upload" :multiple="true" :data="{'id': 'cool! naive!'}">
+                            <n-button round size="tiny">
                                 上传
                                 <template #icon>
                                     <n-icon>
@@ -26,14 +22,14 @@
                         </n-upload>
 
                         <n-button-group>
-                            <!-- <n-button round size="tiny">
-                                <template #icon>
-                                    <n-icon>
-                                        <addfolder></addfolder>
-                                    </n-icon>
-                                </template>
-                                创建文件夹
-                            </n-button> -->
+                            <!-- <n-button round size=" tiny">
+                            <template #icon>
+                                <n-icon>
+                                    <addfolder></addfolder>
+                                </n-icon>
+                            </template>
+                            创建文件夹
+                        </n-button> -->
                             <n-popconfirm @positive-click="handlePositiveClick" @negative-click="handleNegativeClick"
                                 :show-icon="false" :negative-button-props="{ size: 'tiny' }"
                                 :positive-button-props="{ size: 'tiny' }" negative-text="取消" positive-text="创建">
@@ -261,7 +257,7 @@
     </n-modal>
 </template>
 <script setup lang="ts">
-import { NDataTable,NDialogProvider, NLayout, NCard, NPopconfirm, NProgress, NText, NUpload, NDrawer, NDrawerContent, NModal, NThing, NTag, NDivider, NLayoutContent, NTime, NLayoutSider, NSpace, NMenu, NIcon, useMessage, NSwitch, NButton, NButtonGroup, NInput, NInputGroup } from 'naive-ui';
+import { NDataTable, NDialogProvider, NLayout, NCard, NPopconfirm, NProgress, NText, NUpload, NDrawer, NDrawerContent, NModal, NThing, NTag, NDivider, NLayoutContent, NTime, NLayoutSider, NSpace, NMenu, NIcon, useMessage, NSwitch, NButton, NButtonGroup, NInput, NInputGroup } from 'naive-ui';
 import type { MenuOption } from 'naive-ui';
 import type { DataTableColumns, DataTableRowKey } from 'naive-ui'
 import {
